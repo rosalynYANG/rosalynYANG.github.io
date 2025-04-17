@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>懒羊羊 | AI 产品经理</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1',
+                        secondary: '#4F46E5',
+                        accent: '#A5B4FC',
+                        dark: '#2D3748',
+                        light: '#F7FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Noto Sans SC', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+        }
+        .hero-animation {
+            background: linear-gradient(90deg, #6366F1, #4F46E5, #A5B4FC);
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .flower-character {
+            transition: all 0.3s ease;
+        }
+        .flower-character:hover {
+            transform: translateY(-10px) rotate(5deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary">懒羊羊</a>
+            
+            <!-- Mobile menu button -->
+            <button id="menu-toggle" class="md:hidden text-primary focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="hover:text-primary transition-colors">关于我</a>
+                <a href="#experience" class="hover:text-primary transition-colors">经历</a>
+                <a href="#projects" class="hover:text-primary transition-colors">项目</a>
+                <a href="#contact" class="hover:text-primary transition-colors">联系我</a>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white w-full px-4 py-3 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="hover:text-primary transition-colors">关于我</a>
+                <a href="#experience" class="hover:text-primary transition-colors">经历</a>
+                <a href="#projects" class="hover:text-primary transition-colors">项目</a>
+                <a href="#contact" class="hover:text-primary transition-colors">联系我</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-24 pb-12 bg-gradient-to-r from-indigo-900/5 to-purple-900/5">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <!-- Flower Characters (like in reference image) -->
+                <div class="flex justify-center w-full md:w-1/2 mb-8 md:mb-0">
+                    <div class="flex items-end space-x-4">
+                        <div class="flower-character bg-orange-100 w-28 h-36 md:w-32 md:h-40 rounded-full flex items-center justify-center">
+                            <div class="bg-orange-300 rounded-full w-20 h-20 flex items-center justify-center text-white font-bold text-xl">
+                                AI
+                            </div>
+                        </div>
+                        <div class="flower-character bg-blue-100 w-28 h-36 md:w-36 md:h-44 rounded-full flex items-center justify-center">
+                            <div class="bg-blue-300 rounded-full w-24 h-24 flex items-center justify-center text-white font-bold text-xl">
+                                PM
+                            </div>
+                        </div>
+                        <div class="flower-character bg-yellow-100 w-28 h-36 md:w-32 md:h-40 rounded-full flex items-center justify-center">
+                            <div class="bg-yellow-300 rounded-full w-20 h-20 flex items-center justify-center text-white font-bold text-xl">
+                                懒羊羊
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Text Content -->
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">懒羊羊</h1>
+                    <h2 class="text-xl md:text-2xl font-medium text-primary mb-6">AI 产品经理</h2>
+                    <p class="text-lg text-gray-600 mb-8">前<a href="https://choice.eastmoney.com/" target="_blank" class="hover:text-primary transition-colors">东方财富</a>、<a href="https://www.jigoutong.com/" target="_blank" class="hover:text-primary transition-colors">基煜基金</a>产品经理<br>从0到1规划基构云投研平台</p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#about" class="px-8 py-3 bg-primary hover:bg-secondary text-white rounded-full transition-colors">了解更多</a>
+                        <a href="#contact" class="px-8 py-3 bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full transition-colors">联系我</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                    <div class="relative">
+                        <img src="https://picsum.photos/600/800?random=1" alt="懒羊羊" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
+                        <!-- Decorative element -->
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-full -z-10"></div>
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full -z-10"></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800 relative inline-block">
+                        关于我
+                        <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        懒羊羊 | AI 产品经理<br>
+                        前<a href="https://choice.eastmoney.com/" target="_blank" class="hover:text-primary transition-colors">东方财富</a>、<a href="https://www.jigoutong.com/" target="_blank" class="hover:text-primary transition-colors">基煜基金</a>产品经理（参与choice数据底层能力建设、从0到1规划基构云投研平台），
+                        现为<a href="https://wap.huaan.com.cn/" target="_blank" class="hover:text-primary transition-colors">华安基金</a>数字服务部产品经理。5年+产品经验，擅长从0到1搭建产品，打造极致用户体验。
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">技能</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">产品规划</span>
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">用户研究</span>
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">Python</span>
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">SQL</span>
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">AI应用</span>
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">Tableau</span>
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">帆软</span>
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">Xmind</span>
+                            <span class="px-4 py-2 bg-indigo-50 text-primary rounded-full text-sm">Axure</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">荣誉成就</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-award text-primary mt-1 mr-3"></i>
+                                <span>连续两年获部门最高年终绩效A级（人数占比：6/150）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-trophy text-primary mt-1 mr-3"></i>
+                                <span>两次荣获公司级"科技之星"（人数占比：6/300）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-lightbulb text-primary mt-1 mr-3"></i>
+                                <span>获得年度公司级创新项目奖（人数占比：10/300）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-primary mt-1 mr-3"></i>
+                                <span>获季度部门级"服务之星"（人数占比：3/150）</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <a href="https://www.woshipm.com/evaluating/6107691.html" target="_blank" class="text-primary hover:text-secondary transition-colors">
+                            <i class="fas fa-globe text-xl"></i>
+                        </a>
+                        <a href="#" class="text-primary hover:text-secondary transition-colors">
+                            <i class="fas fa-book text-xl"></i>
+                            <span class="ml-2 text-sm">懒羊羊的产品经理手册</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-gradient-to-r from-indigo-900/5 to-purple-900/5">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-gray-800 text-center relative inline-block">
+                职业经历
+                <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+            </h2>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-0 md:left-1/2 top-0 h-full w-1 bg-gradient-to-b from-indigo-300 to-purple-300 md:transform md:-translate-x-1/2 hidden md:block"></div>
+                
+                <!-- Experience 1 -->
+                <div class="md:flex items-center mb-12 relative">
+                    <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
+                        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                            <span class="inline-block bg-primary text-white text-sm px-3 py-1 rounded-full mb-4">2025.03~至今</span>
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">
+                                <a href="https://wap.huaan.com.cn/" target="_blank" class="hover:text-primary transition-colors">华安基金管理有限公司</a>
+                            </h3>
+                            <h4 class="text-lg font-medium mb-3 text-primary">数字服务部-产品经理</h4>
+                            <p class="text-gray-600"></p>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:w-px md:h-4"></div>
+                    <div class="hidden md:flex justify-center items-center w-9 h-9 bg-primary rounded-full text-white absolute left-0 md:left-1/2 top-6 md:transform md:-translate-x-1/2 md:mt-0 border-4 border-white">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="md:flex items-center mb-12 relative">
+                    <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                    <div class="hidden md:flex justify-center items-center w-9 h-9 bg-primary rounded-full text-white absolute left-0 md:left-1/2 top-6 md:transform md:-translate-x-1/2 md:mt-0 border-4 border-white">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12">
+                        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                            <span class="inline-block bg-primary text-white text-sm px-3 py-1 rounded-full mb-4">2020.06~2025.03（5年）</span>
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">
+                                <a href="https://www.jigoutong.com/" target="_blank" class="hover:text-primary transition-colors">上海基煜基金销售有限公司</a>
+                            </h3>
+                            <h4 class="text-lg font-medium mb-3 text-primary">科技中心-高级产品经理</h4>
+                            <p class="text-gray-600">作为SaaS平台产品负责人，负责0~1和1~N，2023年实现了用户活跃数增长200%。同时，具备丰富的跨团队沟通能力和协作经验，引领了多个公司创新性产品项目的调研和从0~1的落地。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="md:flex items-center relative">
+                    <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
+                        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                            <span class="inline-block bg-primary text-white text-sm px-3 py-1 rounded-full mb-4">2018.06~2020.06（2年）</span>
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">
+                                <a href="https://choice.eastmoney.com/" target="_blank" class="hover:text-primary transition-colors">东方财富信息股份有限公司</a>
+                            </h3>
+                            <h4 class="text-lg font-medium mb-3 text-primary">choice产品部-产品运营</h4>
+                            <p class="text-gray-600">具备丰富的银行理财子投研科技服务经验，多次直接向理财子的高层管理团队汇报科技成果，对理财子公司、基金公司和券商的服务经验丰富，积累了良好的客户关系。</p>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex justify-center items-center w-9 h-9 bg-primary rounded-full text-white absolute left-0 md:left-1/2 top-6 md:transform md:-translate-x-1/2 md:mt-0 border-4 border-white">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center relative inline-block">
+                项目案例
+                <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+            </h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">以下是我参与的代表性项目案例，展示了我在产品规划、用户研究和数据分析方面的专业能力。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/800/500?random=2" alt="Project 1" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="absolute top-4 right-4 bg-primary text-white text-xs px-2 py-1 rounded">重点项目</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">机构基金投研数字化全流程平台（基构云）</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">产品规划</span>
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">SaaS平台</span>
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">0到1</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">为机构投资者（投资/研究人员）和投研服务商提供一个投研平台；半年内完成客户需求调研和规划，1年内完成平台核心模块搭建并超越竞品。成果：获得2024年度《亚洲银行家》最佳财富与资产管理技术奖。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">2021.06 ~ 至今</span>
+                            <a href="#" class="text-primary hover:text-secondary transition-colors flex items-center gap-1">
+                                <span>了解更多</span>
+                                <i class="fas fa-arrow-right text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/800/500?random=3" alt="Project 2" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="absolute top-4 right-4 bg-primary text-white text-xs px-2 py-1 rounded">AI创新</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">投研内容（基金经理调研报告）生成AI项目</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">AI应用</span>
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">大模型</span>
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">内容生成</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">负责领导并实施一项基于通用大模型的AI项目，自动化从公网获取基金经理的定性信息，并进行标准化总结生成，显著扩展了信息覆盖范围，从23%提升至60%，覆盖了TOP50基金管理人的基金经理。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">2024.Q2 ~ 2024.Q4</span>
+                            <a href="#" class="text-primary hover:text-secondary transition-colors flex items-center gap-1">
+                                <span>了解更多</span>
+                                <i class="fas fa-arrow-right text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/800/500?random=4" alt="Project 3" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">大类资产配置与策略推荐引擎</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">数据分析</span>
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">策略推荐</span>
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">资产配置</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">通过策略推荐，为公司带来近5亿的主动营销交易量达成。同时，技术的创新使项目交付效率提高了11倍，提前1.5个月完成交付。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">2022.Q4 ~ 2023.Q2</span>
+                            <a href="#" class="text-primary hover:text-secondary transition-colors flex items-center gap-1">
+                                <span>了解更多</span>
+                                <i class="fas fa-arrow-right text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/800/500?random=5" alt="Project 4" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">投资池一体化管理功能</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">投资管理</span>
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">差异化竞争</span>
+                            <span class="px-2 py-1 bg-indigo-50 text-primary rounded text-xs">理财子</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">成为市场上独特功能，超越竞品，实现了差异化竞争。该项目已成为多家理财子合作投研项目中的典型案例。最终助力公司实现超过20亿的公募基金销售换量。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">2022.Q1 ~ Q3</span>
+                            <a href="#" class="text-primary hover:text-secondary transition-colors flex items-center gap-1">
+                                <span>了解更多</span>
+                                <i class="fas fa-arrow-right text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.woshipm.com/evaluating/6107691.html" target="_blank" class="px-8 py-3 bg-primary hover:bg-secondary text-white rounded-full transition-colors inline-flex items-center gap-2">
+                    <span>查看更多项目</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-indigo-900/5 to-purple-900/5">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center relative inline-block">
+                联系我
+                <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+            </h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">如果您对我的工作感兴趣，或者想讨论可能的合作机会，请随时与我联系。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Contact Card 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 text-primary rounded-full mb-4">
+                        <i class="fas fa-book fa-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">微信公众号</h3>
+                    <p class="text-gray-600 mb-4">懒羊羊的产品经理手册</p>
+                    <a href="#" class="text-primary hover:text-secondary transition-colors">关注公众号</a>
+                </div>
+                
+                <!-- Contact Card 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 text-primary rounded-full mb-4">
+                        <i class="fas fa-user fa-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">个人微信</h3>
+                    <p class="text-gray-600 mb-4">yangtwolay</p>
+                    <a href="#" class="text-primary hover:text-secondary transition-colors">添加微信</a>
+                </div>
+                
+                <!-- Contact Card 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 text-primary rounded-full mb-4">
+                        <i class="fas fa-globe fa-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">人人都是产品经理</h3>
+                    <p class="text-gray-600 mb-4">懒羊羊的产品经理手册</p>
+                    <a href="https://www.woshipm.com/evaluating/6107691.html" target="_blank" class="text-primary hover:text-secondary transition-colors">查看文章</a>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 text-center">发送消息</h3>
+                <form>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="name">您的姓名</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="email">您的邮箱</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-colors">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2" for="subject">主题</label>
+                        <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-colors">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2" for="message">您的消息</label>
+                        <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-colors"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="px-8 py-3 bg-primary hover:bg-secondary text-white rounded-full transition-colors inline-flex items-center gap-2">
+                            <span>发送消息</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-2xl font-bold">懒羊羊 | AI 产品经理</h2>
+                    <p class="text-gray-400 mt-2">从0到1规划产品，打造极致用户体验</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white hover:text-primary transition-colors">
+                        <i class="fab fa-weixin fa-lg"></i>
+                    </a>
+                    <a href="https://www.woshipm.com/evaluating/6107691.html" target="_blank" class="text-white hover:text-primary transition-colors">
+                        <i class="fas fa-globe fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 懒羊羊的产品经理手册. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a menu item
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
