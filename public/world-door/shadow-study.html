@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>门影与羊腿影校准稿</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#171126}body{display:grid;place-items:center;overflow:hidden}
+    .study{position:relative;width:100vw;aspect-ratio:2167/726;max-height:100vh;overflow:hidden;background:#f8efd8}
+    .study>img,.study>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+    .portal-shadow{fill:#21164b;opacity:.94}
+    .leg-shadow{fill:#140d36;opacity:.38}
+    .grain{fill:url(#grain);opacity:.18;mix-blend-mode:multiply}
+  </style>
+</head>
+<body>
+  <figure class="study" aria-label="门影向右、两条羊腿影向左并在羊腹下重合的校准稿">
+    <img src="assets/surreal-scene-no-shadow-v1.png" alt="没有地面投影的羊、门、花房与 AI 倒影场景">
+    <svg viewBox="0 0 2167 726" aria-hidden="true">
+      <defs>
+        <pattern id="grain" width="13" height="11" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="3" r=".65" fill="#fff"/><circle cx="9" cy="7" r=".55" fill="#fff"/>
+        </pattern>
+      </defs>
+      <!-- 门影：只从左侧门洞向右延伸，终点收在蓝色后腿下方。 -->
+      <path class="portal-shadow" d="M66 514 L157 514 L661 540 L322 584 Z"/>
+      <!-- 两条白色前腿的影子反向向左，并在门影内部完全重合。 -->
+      <path class="leg-shadow" d="M455 526 L226 548 L466 542 Z"/>
+      <path class="leg-shadow" d="M498 547 L244 558 L508 561 Z"/>
+      <path class="grain" d="M66 514 L157 514 L661 540 L322 584 Z"/>
+    </svg>
+  </figure>
+</body>
+</html>
