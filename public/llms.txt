@@ -1,0 +1,21 @@
+# 小样儿 YoungSheep Lab
+
+> 小样儿创意与 AI 产品实验室：连接金融洞察、AI 能力、产品设计与视觉表达，把奇怪灵感养成真的产品。
+
+## 站点地图
+
+- [交互首页](https://www.youngsheep.com.cn/world-door/index.html): 超现实交互式入口页与项目抽屉
+- [网站首页](https://www.youngsheep.com.cn/): 小样儿创意与 AI 产品实验室
+- [金融 AI 营销与服务产品线](https://www.youngsheep.com.cn/projects/financial-ai-service): 覆盖内容、客服、销售与渠道的金融 AI 产品系统
+- [真实好花情绪陪伴系统](https://www.youngsheep.com.cn/projects/flower-curation): 用真实花、故事与数字体验承接情绪
+- [AI 文化导游](https://www.youngsheep.com.cn/projects/ai-cultural-guide): 兴趣驱动的视频陪看与文化讲解产品实验
+
+## 关键事实
+
+- 站点名：小样儿 / YoungSheep Lab
+- 语言：简体中文
+- 域名：https://www.youngsheep.com.cn
+- ICP 备案：沪ICP备2026029008号-2
+- 联系方式：dhu_rosalyn@sina.com
+- GitHub：https://github.com/rosalynYANG
+- 内容范围：AI 产品设计、金融科技、Agent 编排、RAG 搜索、创意系统与视觉叙事

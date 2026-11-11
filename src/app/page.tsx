@@ -54,6 +54,6 @@ export default function Home() {
 
     <section className="section-shell notes-section" id="notes"><div className="notes-card"><div><Sparkles size={28} /><p className="kicker">FIELD NOTES</p></div><h2>研究、判断和一些<br />还没长成项目的念头。</h2><p>金融与 AI、产品方法、创意实验、视频和日常观察，会在这里慢慢形成一套属于小样儿的知识花园。</p><span className="button button-light">笔记正在搬家 <LibraryBig size={18} /></span></div></section>
 
-    <footer className="section-shell footer" id="contact"><SheepMark className="footer-mark" /><p className="kicker">LET&apos;S MAKE SOMETHING ALIVE</p><h2>有值得一起养大的想法吗？</h2><p>欢迎聊 AI 产品、金融科技、创意系统，或者任何有一点奇怪但让人兴奋的事。</p><a href="mailto:hello@youngsheep.com.cn" className="button button-primary">给小样儿写信 <ArrowRight size={18} /></a><div className="footer-bottom"><span>© 2026 YoungSheep Lab</span><span>生长于真实问题，也生长于好奇心。</span></div></footer>
+    <footer className="section-shell footer" id="contact"><SheepMark className="footer-mark" /><p className="kicker">LET&apos;S MAKE SOMETHING ALIVE</p><h2>有值得一起养大的想法吗？</h2><p>欢迎聊 AI 产品、金融科技、创意系统，或者任何有一点奇怪但让人兴奋的事。</p><a href="mailto:hello@youngsheep.com.cn" className="button button-primary">给小样儿写信 <ArrowRight size={18} /></a><div className="footer-bottom"><span>© 2026 YoungSheep Lab</span><span>生长于真实问题，也生长于好奇心。</span></div><div className="beian-line"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">沪ICP备2026029008号-2</a></div></footer>
   </main>;
 }
