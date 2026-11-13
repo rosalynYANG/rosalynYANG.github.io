@@ -5,6 +5,9 @@ const card = document.querySelector('.exhibit-card');
 const backdrop = document.querySelector('.modal-backdrop');
 const toast = document.querySelector('.toast');
 const revealZone = document.querySelector('.sheep-reveal-zone');
+const heroCopy = document.querySelector('.hero-copy');
+const brand = document.querySelector('.brand');
+const ambientSky = document.querySelector('.ambient-sky');
 
 const content = {
   projects:{k:'AI PROJECTS',t:'三个真实落地的 AI 项目',s:'从金融业务、情绪陪伴到文化讲解，分别验证 AI 如何进入真实场景并交付结果。',rows:[],tags:[],projects:true},
@@ -16,9 +19,10 @@ const content = {
 };
 
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-let toastTimer, previewLeaveTimer, sheepReactionTimer, cameraX=0, renderFrame=0, motionFrame=0, pointerId=null;
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+let toastTimer, previewLeaveTimer, cameraX=0, renderFrame=0, motionFrame=0, pointerId=null;
 let startPointerX=0, startCameraX=0, previousPointerX=0, previousPointerTime=0, velocity=0;
-let dragging=false, moved=false;
+let dragging=false, moved=false, parallaxFrame=0, pointerX=0, pointerY=0;
 
 const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
 const maxCamera=()=>Math.max(0,stage.scrollWidth-viewport.clientWidth);
@@ -32,19 +36,15 @@ function renderCamera(){renderFrame=0;stage.style.transform=`translate3d(${-came
 function setCamera(value){cameraX=value;if(!renderFrame)renderFrame=requestAnimationFrame(renderCamera);}
 function stopMotion(){if(motionFrame)cancelAnimationFrame(motionFrame);motionFrame=0;}
 const easeOutQuint=t=>1-Math.pow(1-t,5);
+const wait=duration=>new Promise(resolve=>setTimeout(resolve,duration));
 function animateCamera(destination,duration=950){stopMotion();const from=cameraX,to=clamp(destination,0,maxCamera());if(reducedMotion){setCamera(to);return Promise.resolve();}return new Promise(resolve=>{const started=performance.now();const tick=now=>{const p=clamp((now-started)/duration,0,1);setCamera(from+(to-from)*easeOutQuint(p));if(p<1)motionFrame=requestAnimationFrame(tick);else{motionFrame=0;resolve();}};motionFrame=requestAnimationFrame(tick);});}
 function say(message){clearTimeout(toastTimer);toast.textContent=message;toast.classList.add('show');toastTimer=setTimeout(()=>toast.classList.remove('show'),1700);}
 function wake(){
   const waking=root.dataset.state!=='awake';
   root.dataset.state=waking?'awake':'idle';
-  root.classList.remove('sheep-reacting');
-  void root.offsetWidth;
-  root.classList.add('sheep-reacting');
-  clearTimeout(sheepReactionTimer);
-  sheepReactionTimer=setTimeout(()=>root.classList.remove('sheep-reacting'),760);
   say(waking?'导航沿着影子出现了。':'导航重新回到羊的身体里。');
 }
-async function openWorld(){closeCard();closeDrawers();root.dataset.world='open';root.classList.add('opening');await animateCamera(worldCamera(),920);root.classList.remove('opening');say('已经穿过门。现在可以左右拖动这幅长卷。');}
+async function openWorld(){if(root.classList.contains('opening'))return;closeCard();closeDrawers();root.classList.add('door-primed');if(!reducedMotion)await wait(150);root.dataset.world='open';root.classList.add('opening');root.classList.remove('door-primed');await animateCamera(worldCamera(),820);root.classList.remove('opening');say('已经穿过门。现在可以左右拖动这幅长卷。');}
 async function home(){closeCard();closeDrawers();root.dataset.state='idle';await animateCamera(homeCamera(),720);root.dataset.world='closed';say('沿着长卷回到入口。');}
 function setDrawerPreview(open,{pinned=false}={}){
   root.dataset.drawersPreview=open?'open':'closed';
@@ -87,9 +87,13 @@ function openCard(key){
   card.classList.add('open');backdrop.classList.add('open');root.classList.add('reading');card.setAttribute('aria-hidden','false');backdrop.setAttribute('aria-hidden','false');card.querySelector('.card-close').focus({preventScroll:true});
 }
 function closeCard(){closeDetail();card.classList.remove('open');backdrop.classList.remove('open');root.classList.remove('reading');card.setAttribute('aria-hidden','true');backdrop.setAttribute('aria-hidden','true');}
-function beginDrag(event){if((root.dataset.world!=='open'&&!isMobile())||root.classList.contains('reading'))return;stopMotion();pointerId=event.pointerId;startPointerX=previousPointerX=event.clientX;startCameraX=cameraX;previousPointerTime=performance.now();velocity=0;dragging=true;moved=false;viewport.setPointerCapture(pointerId);viewport.classList.add('is-dragging');}
-function moveDrag(event){if(!dragging||event.pointerId!==pointerId)return;const delta=event.clientX-startPointerX;if(!moved&&Math.abs(delta)<4)return;moved=true;const now=performance.now(),elapsed=Math.max(1,now-previousPointerTime);velocity=(previousPointerX-event.clientX)/elapsed;previousPointerX=event.clientX;previousPointerTime=now;const raw=startCameraX-delta,max=dragLimit();if(raw<0)setCamera(-resistance(-raw));else if(raw>max)setCamera(max+resistance(raw-max));else setCamera(raw);}
-function settleDrag(){if(!dragging)return;dragging=false;pointerId=null;viewport.classList.remove('is-dragging');animateCamera(clamp(cameraX,0,dragLimit()),180);}
+function beginDrag(event){if(event.target.closest('button,a')||(root.dataset.world!=='open'&&!isMobile())||root.classList.contains('reading'))return;stopMotion();pointerId=event.pointerId;startPointerX=previousPointerX=event.clientX;startCameraX=cameraX;previousPointerTime=performance.now();velocity=0;dragging=true;moved=false;viewport.setPointerCapture(pointerId);viewport.classList.add('is-dragging');}
+function moveDrag(event){if(!dragging||event.pointerId!==pointerId)return;const delta=event.clientX-startPointerX;if(!moved&&Math.abs(delta)<4)return;moved=true;const now=performance.now(),elapsed=Math.max(1,now-previousPointerTime);velocity=(previousPointerX-event.clientX)/elapsed;previousPointerX=event.clientX;previousPointerTime=now;const raw=startCameraX-delta,max=dragLimit();if(raw<0)setCamera(-resistance(-raw));else if(raw>max)setCamera(max+resistance(raw-max));else setCamera(raw);if(ambientSky)ambientSky.style.transform=`translate3d(${clamp(-velocity*3.2,-4,4)}px,0,0)`;}
+function settleDrag(){if(!dragging)return;dragging=false;pointerId=null;viewport.classList.remove('is-dragging');if(ambientSky)ambientSky.style.transform='';const momentum=clamp(velocity,-2.4,2.4)*220;const destination=clamp(cameraX+momentum,0,dragLimit());const duration=reducedMotion?0:clamp(220+Math.abs(momentum)*.32,220,420);animateCamera(destination,duration);}
+
+function renderParallax(){parallaxFrame=0;if(reducedMotion||!finePointer.matches||root.dataset.world==='open'){heroCopy.style.removeProperty('--px');heroCopy.style.removeProperty('--py');brand.style.removeProperty('--px');brand.style.removeProperty('--py');return;}const x=clamp((pointerX/innerWidth-.5)*2,-1,1),y=clamp((pointerY/innerHeight-.5)*2,-1,1);heroCopy.style.setProperty('--px',`${x*4}px`);heroCopy.style.setProperty('--py',`${y*3}px`);brand.style.setProperty('--px',`${x*2}px`);brand.style.setProperty('--py',`${y*1.5}px`);}
+function updateParallax(event){if(!finePointer.matches)return;pointerX=event.clientX;pointerY=event.clientY;if(!parallaxFrame)parallaxFrame=requestAnimationFrame(renderParallax);}
+function resetParallax(){pointerX=innerWidth/2;pointerY=innerHeight/2;if(!parallaxFrame)parallaxFrame=requestAnimationFrame(renderParallax);}
 
 document.addEventListener('click',event=>{if(moved){event.preventDefault();event.stopPropagation();moved=false;return;}if(event.target.matches('.modal-backdrop')){closeCard();return;}const target=event.target.closest('button,a');if(!target)return;if(target.dataset.url){window.open(target.dataset.url,'_blank','noopener');return;}if(target.dataset.action==='wake')wake();if(target.dataset.action==='expand')openWorld();if(target.dataset.action==='reveal-drawers')toggleDrawerPin();if(target.dataset.action==='read-detail')openDetail();if(target.dataset.action==='close-detail')closeDetail();if(target.dataset.action==='home'){event.preventDefault();home();}if(target.dataset.drawer)toggleDrawer(target.dataset.drawer);if(target.dataset.card)openCard(target.dataset.card);if(target.matches('.card-close'))closeCard();},true);
 revealZone.addEventListener('pointerenter',()=>{clearTimeout(previewLeaveTimer);if(root.dataset.world==='open')setDrawerPreview(true,{pinned:root.dataset.drawersPinned==='true'});});
@@ -99,10 +103,13 @@ document.querySelectorAll('[data-drawer-unit]').forEach(unit=>{
   unit.addEventListener('pointerleave',()=>{clearTimeout(previewLeaveTimer);previewLeaveTimer=setTimeout(()=>{if(root.dataset.drawersPinned!=='true'&&!root.classList.contains('reading'))setDrawerPreview(false);},320);});
 });
 viewport.addEventListener('pointerdown',beginDrag);viewport.addEventListener('pointermove',moveDrag);viewport.addEventListener('pointerup',settleDrag);viewport.addEventListener('pointercancel',settleDrag);
+viewport.addEventListener('pointermove',updateParallax,{passive:true});viewport.addEventListener('pointerleave',resetParallax);
 window.addEventListener('resize',()=>setCamera(root.dataset.world==='closed'?homeCamera():clamp(cameraX,worldCamera(),maxCamera())));
+document.addEventListener('visibilitychange',()=>{root.dataset.motion=document.hidden?'paused':'active';});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeCard();closeDrawers();root.dataset.state='idle';}});
 const initialParams=new URLSearchParams(location.search);
 const requestedPanel=initialParams.get('panel');
+root.dataset.motion=document.hidden?'paused':'active';
 if(initialParams.get('world')==='drawers'){
   root.dataset.world='open';
   setDrawerPreview(true,{pinned:true});
