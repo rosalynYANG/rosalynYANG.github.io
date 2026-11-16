@@ -1,7 +1,8 @@
+import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-BASE = "http://127.0.0.1:3000"
+BASE = os.environ.get("BASE_URL", "http://127.0.0.1:3000")
 OUT = Path("qa-mobile")
 OUT.mkdir(exist_ok=True)
 
@@ -11,7 +12,7 @@ with sync_playwright() as p:
         page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
         errors = []
         page.on("console", lambda msg: errors.append(msg.text) if msg.type == "error" else None)
-        page.goto(f"{BASE}/world-door/index.html", wait_until="domcontentloaded", timeout=120000)
+        page.goto(f"{BASE}/", wait_until="domcontentloaded", timeout=120000)
         page.wait_for_selector("#world-strip", timeout=120000)
         before = page.locator("#world-strip").evaluate("el => getComputedStyle(el).transform")
         page.mouse.move(width * .55, height * .7)
@@ -28,12 +29,17 @@ with sync_playwright() as p:
           hallHeight: document.querySelector('.hall-panorama').getBoundingClientRect().height
         })""")
         print(width, height, metrics, flush=True)
-        assert before == after, f"closed cover moved at {width}x{height}"
+        if width <= 700:
+            assert before != after, f"closed cover did not pan at {width}x{height}"
+        else:
+            assert before == after, f"tablet cover moved at {width}x{height}"
         assert metrics["world"] == "closed"
         assert abs(metrics["bodyHeight"] - metrics["innerHeight"]) <= 2
         assert abs(metrics["sceneHeight"] - metrics["innerHeight"]) <= 2
         page.screenshot(path=str(OUT / f"cover-{width}x{height}.png"))
 
+        page.reload(wait_until="domcontentloaded", timeout=120000)
+        page.wait_for_selector('[data-action="expand"]', timeout=120000)
         page.locator('[data-action="expand"]').click(force=True)
         page.wait_for_timeout(1150)
         opened = page.evaluate("""() => ({

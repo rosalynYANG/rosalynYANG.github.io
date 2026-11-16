@@ -3,9 +3,6 @@ import { withContentCollections } from "@content-collections/next";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async redirects() {
-    return [{ source: "/", destination: "/world-door/index.html", permanent: false }];
-  },
   async headers() {
     return [
       {

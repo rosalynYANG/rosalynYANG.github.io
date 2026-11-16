@@ -10,7 +10,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-打开 `http://localhost:3000/world-door/index.html`。
+打开 `http://localhost:3000/`。
 
 ## 生产构建
 

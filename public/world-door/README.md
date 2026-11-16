@@ -1,6 +1,6 @@
 # YoungSheep 横向超现实长卷原型
 
-预览：`http://localhost:3000/world-door/index.html`
+预览：`http://localhost:3000/`
 
 - 第一屏保持柔软时间原视觉：裂蛋、紫钟、小羊、三颗项目球、长影与门。
 - 点击羊后，六个导航点沿影子出现：项目、关于、文章、Now、联系、快速了解。

@@ -7,7 +7,7 @@ import ProjectToc from "../ProjectToc";
 export const metadata={title:"真实好花情绪陪伴系统"};
 const toc=[{id:"overview",number:"00",label:"项目概览"},{id:"companionship",number:"01",label:"情绪陪伴"},{id:"curation",number:"02",label:"策展底座"},{id:"journey",number:"03",label:"用户旅程"},{id:"mvp",number:"04",label:"一期验证"},{id:"launch",number:"05",label:"线上体验"}];
 
-export default async function FlowerCuration({searchParams}:{searchParams:Promise<{from?:string}>}){const {from}=await searchParams;const backHref=from==="drawers"?"/world-door/index.html?world=drawers":"/world-door/index.html?state=awake";return <main className="story-page flower-story"><div className="story-shell">
+export default async function FlowerCuration({searchParams}:{searchParams:Promise<{from?:string}>}){const {from}=await searchParams;const backHref=from==="drawers"?"/?world=drawers":"/?state=awake";return <main className="story-page flower-story"><div className="story-shell">
   <nav className="story-nav"><Link href={backHref}>← 返回上一级</Link><span>已上线 · 微信小程序</span></nav>
   <header className="story-hero"><p className="story-kicker">LIVE PRODUCT · EMOTIONAL COMPANIONSHIP</p><h1>用一朵真实好花，陪人安放当下的情绪</h1><p className="story-lead">花花首先是一套轻量的情绪陪伴产品：当情绪难以说清，用户可以遇见一朵与自己此刻相近的花，把它留下、送给自己，或借它向另一个人表达。审美策展是保证花足够真实、好看、值得停留的方法，而不是产品的全部。</p><div className="story-facts"><div><small>核心价值</small><b>让情绪被看见与承接</b></div><div><small>陪伴动作</small><b>遇见、保存、送给自己或他人</b></div><div><small>产品状态</small><b>微信小程序已上线</b></div></div></header>
   <section className="story-section"><figure className="story-image"><Image src="/project-assets/flower/overview.png" alt="真实好花审美策展系统概览" width={1664} height={936}/></figure></section>

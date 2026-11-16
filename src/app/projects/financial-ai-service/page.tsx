@@ -68,7 +68,7 @@ function Status({ children, tone = "live" }: { children: React.ReactNode; tone?:
 
 export default async function FinancialAIServiceCase({searchParams}:{searchParams:Promise<{from?:string}>}) {
   const {from}=await searchParams;
-  const backHref=from==="drawers"?"/world-door/index.html?world=drawers":"/world-door/index.html?state=awake";
+  const backHref=from==="drawers"?"/?world=drawers":"/?state=awake";
   return (
     <main className="financial-case">
       <div className="case-page">
