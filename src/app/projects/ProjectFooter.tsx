@@ -27,14 +27,21 @@ export default function ProjectFooter({ backHref }: { backHref: string }) {
   return (
     <>
       <footer className="project-footer">
-        <Link href={backHref} className="project-footer-action">
-          <ArrowLeft aria-hidden="true" />
-          返回上一级
-        </Link>
-        <button className="project-footer-action" type="button" onClick={() => setOpen(true)}>
-          联系小样儿
-          <ArrowRight aria-hidden="true" />
-        </button>
+        <div className="project-footer-actions">
+          <Link href={backHref} className="project-footer-action">
+            <ArrowLeft aria-hidden="true" />
+            返回上一级
+          </Link>
+          <button className="project-footer-action" type="button" onClick={() => setOpen(true)}>
+            联系小样儿
+            <ArrowRight aria-hidden="true" />
+          </button>
+        </div>
+        <div className="project-filing-records" aria-label="网站备案信息">
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">沪ICP备2026029008号-2</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://beian.mps.gov.cn/#/query/webSearch?code=31011502408224" target="_blank" rel="noopener noreferrer">沪公网安备31011502408224号</a>
+        </div>
       </footer>
 
       {open && (
