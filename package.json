@@ -9,6 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test:proxy": "node --experimental-strip-types scripts/test-proxy-routes.mjs",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
